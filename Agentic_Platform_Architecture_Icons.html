@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agentic Platform Architecture – Tech Stack &amp; API Flow</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Segoe UI,Arial,sans-serif;background:#f8f8f6;color:#1a1a1a;padding:24px}
+  .arch{max-width:960px;margin:0 auto}
+  .page-title{text-align:center;margin-bottom:24px}
+  .page-title h1{font-size:20px;font-weight:600;color:#1a1a1a}
+  .page-title p{font-size:13px;color:#888;margin-top:4px}
+
+  .card{border-radius:12px;padding:12px 14px;border:0.5px solid}
+  .card h4{font-size:13px;font-weight:600;margin:0 0 4px;display:flex;align-items:center;gap:6px}
+  .card .sub{font-size:11px;margin-bottom:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:3px}
+  .chip{padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;color:#fff;white-space:nowrap}
+  .row-item{background:rgba(255,255,255,0.55);border-radius:6px;padding:6px 9px;margin-top:5px;border:0.5px solid rgba(0,0,0,0.07)}
+  .row-item .rl{font-size:11px;font-weight:600;margin-bottom:3px}
+  .row-item .chips{margin-top:2px}
+
+  .center-wrap{display:flex;justify-content:center;margin-bottom:4px}
+  .full-card{margin-bottom:4px}
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:4px}
+  .four-col{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:4px}
+  .five-col{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:6px}
+
+  .arr{display:flex;flex-direction:column;align-items:center;margin:3px 0}
+  .arr-line{width:1px;height:16px;background:#bbb}
+  .arr-head{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #bbb}
+  .arr-lbl{font-size:10px;color:#888;font-style:italic;margin:2px 0;text-align:center}
+  .branch-arrows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:3px 0}
+  .four-arrows{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:3px 24px}
+
+  .bus{margin:3px 24px}
+  .bus-taps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .bus-tap{width:1px;height:12px;background:#bbb;margin:0 auto}
+  .bus-rail{border-top:1px solid #bbb;text-align:center;padding-top:5px;font-size:11px;color:#888;font-style:italic}
+
+  .guardrails{border:0.5px dashed #bbb;border-radius:12px;padding:10px;margin-top:4px}
+  .guardrails-label{font-size:11px;color:#888;text-align:center;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:5px}
+</style>
+</head>
+<body>
+<div class="arch">
+
+  <div class="page-title">
+    <h1>Agentic Platform Architecture</h1>
+    <p>Tech Stack &amp; API Flow</p>
+  </div>
+
+  <!-- Home -->
+  <div class="center-wrap">
+    <div class="card" style="background:#EEEDFE;border-color:#534AB7;text-align:center;min-width:300px">
+      <h4 style="color:#3C3489;justify-content:center"><i class="ti ti-home"></i>Home / Landing</h4>
+      <div class="sub" style="color:#534AB7">Single entry point · all hubs &amp; command desk</div>
+      <div class="chips" style="justify-content:center">
+        <span class="chip" style="background:#20232a">React</span>
+        <span class="chip" style="background:#000">Next.js</span>
+        <span class="chip" style="background:#3178C6">TypeScript</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div class="arr">
+    <div class="arr-line"></div>
+    <div class="arr-lbl">HTTPS · API Gateway (Kong) · JWT Auth</div>
+    <div class="arr-head"></div>
+  </div>
+
+  <!-- Command Desk -->
+  <div class="card full-card" style="background:#EEEDFE;border-color:#534AB7">
+    <h4 style="color:#3C3489"><i class="ti ti-terminal-2"></i>Command Desk</h4>
+    <div class="sub" style="color:#534AB7">GT Assist · NL → structured actions · confidence scoring · guardrails · role-aware filtering</div>
+    <div class="chips">
+      <span class="chip" style="background:#3776AB">Python</span>
+      <span class="chip" style="background:#009688">FastAPI</span>
+      <span class="chip" style="background:#1C3C3C">LangChain</span>
+      <span class="chip" style="background:#DC382D">Redis</span>
+      <span class="chip" style="background:#7D68EE">JWT</span>
+      <span class="chip" style="background:#003459">Kong</span>
+      <span class="chip" style="background:#4CAF50">WebSocket</span>
+    </div>
+  </div>
+
+  <!-- Branch arrows -->
+  <div class="branch-arrows">
+    <div class="arr"><div class="arr-line"></div><div class="arr-lbl" style="color:#0F6E56">POST /findings/search</div><div class="arr-head"></div></div>
+    <div class="arr"><div class="arr-line"></div><div class="arr-lbl" style="color:#185FA5">POST /incidents/query</div><div class="arr-head"></div></div>
+    <div class="arr"><div class="arr-line"></div><div class="arr-lbl" style="color:#534AB7">POST /validate/request</div><div class="arr-head"></div></div>
+  </div>
+
+  <!-- 3 Hubs -->
+  <div class="three-col">
+
+    <div class="card" style="background:#E1F5EE;border-color:#0F6E56">
+      <h4 style="color:#085041"><i class="ti ti-search"></i>Findings Hub</h4>
+      <div class="sub" style="color:#0F6E56">AO Comms Agents Hub</div>
+      <div class="chips">
+        <span class="chip" style="background:#1a1a2e">Pinecone</span>
+        <span class="chip" style="background:#4169E1">pgvector</span>
+        <span class="chip" style="background:#005571">Elastic</span>
+      </div>
+      <div class="row-item"><div class="rl" style="color:#085041">Vector database</div><div class="chips"><span class="chip" style="background:#5C5CE0;font-size:10px">FAISS</span><span class="chip" style="background:#1a1a2e;font-size:10px">Pinecone</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#085041">Fallback search</div><div class="chips"><span class="chip" style="background:#005571;font-size:10px">Elasticsearch · BM25</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#085041">Grouped analysis</div><div class="chips"><span class="chip" style="background:#3776AB;font-size:10px">Python · Pandas</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#085041">Due-date buckets</div><div class="chips"><span class="chip" style="background:#336791;font-size:10px">PostgreSQL</span><span class="chip" style="background:#DC382D;font-size:10px">Redis TTL</span></div></div>
+    </div>
+
+    <div class="card" style="background:#E6F1FB;border-color:#185FA5">
+      <h4 style="color:#0C447C"><i class="ti ti-bell-ringing"></i>Incident Hub</h4>
+      <div class="sub" style="color:#185FA5">Runbook Agents Hub</div>
+      <div class="chips">
+        <span class="chip" style="background:#3A3A3A">Kafka</span>
+        <span class="chip" style="background:#DC382D">Redis</span>
+        <span class="chip" style="background:#06AC38">PagerDuty</span>
+      </div>
+      <div class="row-item"><div class="rl" style="color:#0C447C">Decision engine</div><div class="chips"><span class="chip" style="background:#3776AB;font-size:10px">scikit-learn</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#0C447C">Self-healing</div><div class="chips"><span class="chip" style="background:#CC785C;font-size:10px">Claude API</span><span class="chip" style="background:#1C3C3C;font-size:10px">RAG</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#0C447C">Runbook recs</div><div class="chips"><span class="chip" style="background:#4169E1;font-size:10px">Vector search · kNN</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#0C447C">Noisy flags</div><div class="chips"><span class="chip" style="background:#3A3A3A;font-size:10px">Kafka Streams</span></div></div>
+    </div>
+
+    <div class="card" style="background:#EEEDFE;border-color:#534AB7">
+      <h4 style="color:#3C3489"><i class="ti ti-user-check"></i>Human-in-Loop</h4>
+      <div class="sub" style="color:#534AB7">Validation workflows</div>
+      <div class="chips">
+        <span class="chip" style="background:#336791">PostgreSQL</span>
+        <span class="chip" style="background:#FF9900">S3</span>
+        <span class="chip" style="background:#083fa1">Markdown</span>
+      </div>
+      <div class="row-item"><div class="rl" style="color:#3C3489">Playbook library</div><div class="chips"><span class="chip" style="background:#083fa1;font-size:10px">Markdown · Git</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#3C3489">Audit trail</div><div class="chips"><span class="chip" style="background:#336791;font-size:10px">PostgreSQL</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#3C3489">Skill files</div><div class="chips"><span class="chip" style="background:#FF9900;font-size:10px">S3 · YAML</span></div></div>
+      <div class="row-item"><div class="rl" style="color:#3C3489">Extensible agents</div><div class="chips"><span class="chip" style="background:#1C3C3C;font-size:10px">LangChain · Plugin SDK</span></div></div>
+    </div>
+
+  </div>
+
+  <!-- Bus connector -->
+  <div class="bus">
+    <div class="bus-taps">
+      <div class="bus-tap"></div>
+      <div class="bus-tap"></div>
+      <div class="bus-tap"></div>
+    </div>
+    <div class="bus-rail">gRPC (vector search) · REST GET /knowledge · REST POST /completions</div>
+  </div>
+
+  <!-- 4 infra arrows -->
+  <div class="four-arrows">
+    <div class="arr"><div class="arr-line"></div><div class="arr-head"></div></div>
+    <div class="arr"><div class="arr-line"></div><div class="arr-head"></div></div>
+    <div class="arr"><div class="arr-line"></div><div class="arr-head"></div></div>
+    <div class="arr"><div class="arr-line"></div><div class="arr-head"></div></div>
+  </div>
+
+  <!-- Shared Infra -->
+  <div class="four-col">
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <h4 style="color:#444441;font-size:12px"><i class="ti ti-database" style="font-size:16px"></i>Vector DB</h4>
+      <div class="chips"><span class="chip" style="background:#1a1a2e;font-size:10px">Pinecone</span><span class="chip" style="background:#4169E1;font-size:10px">pgvector</span></div>
+    </div>
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <h4 style="color:#444441;font-size:12px"><i class="ti ti-robot" style="font-size:16px"></i>GT Assist</h4>
+      <div class="chips"><span class="chip" style="background:#CC785C;font-size:10px">Claude API</span><span class="chip" style="background:#1C3C3C;font-size:10px">LangChain</span></div>
+    </div>
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <h4 style="color:#444441;font-size:12px"><i class="ti ti-books" style="font-size:16px"></i>Knowledge</h4>
+      <div class="chips"><span class="chip" style="background:#0052CC;font-size:10px">Confluence</span><span class="chip" style="background:#005571;font-size:10px">Elastic</span></div>
+    </div>
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <h4 style="color:#444441;font-size:12px"><i class="ti ti-archive" style="font-size:16px"></i>Prior closures</h4>
+      <div class="chips"><span class="chip" style="background:#DC382D;font-size:10px">Redis</span><span class="chip" style="background:#336791;font-size:10px">PostgreSQL</span></div>
+    </div>
+  </div>
+
+  <!-- Outputs arrow -->
+  <div class="arr">
+    <div class="arr-line"></div>
+    <div class="arr-lbl">JSON response artifacts</div>
+    <div class="arr-head"></div>
+  </div>
+
+  <!-- Outputs -->
+  <div class="four-col">
+    <div class="card" style="background:#FAECE7;border-color:#993C1D;padding:8px 11px"><div style="font-size:12px;font-weight:600;color:#712B13"><i class="ti ti-chart-bar"></i> Confidence scores</div></div>
+    <div class="card" style="background:#FAECE7;border-color:#993C1D;padding:8px 11px"><div style="font-size:12px;font-weight:600;color:#712B13"><i class="ti ti-edit"></i> Suggested fixes</div></div>
+    <div class="card" style="background:#FAECE7;border-color:#993C1D;padding:8px 11px"><div style="font-size:12px;font-weight:600;color:#712B13"><i class="ti ti-file-text"></i> Evidence snippets</div></div>
+    <div class="card" style="background:#FAECE7;border-color:#993C1D;padding:8px 11px"><div style="font-size:12px;font-weight:600;color:#712B13"><i class="ti ti-send"></i> Recommended actions</div></div>
+  </div>
+
+  <!-- Feedback arrow -->
+  <div class="arr">
+    <div class="arr-line"></div>
+    <div class="arr-lbl">POST /feedback/submit</div>
+    <div class="arr-head"></div>
+  </div>
+
+  <!-- Feedback loop -->
+  <div class="card full-card" style="background:#FAEEDA;border-color:#854F0B;text-align:center">
+    <h4 style="color:#633806;justify-content:center"><i class="ti ti-refresh"></i>Continuous improvement loop</h4>
+    <div class="sub" style="color:#854F0B">Response rationale · feedback · conversational memory · ↻ returns to command desk</div>
+    <div class="chips" style="justify-content:center">
+      <span class="chip" style="background:#3776AB">Python</span>
+      <span class="chip" style="background:#DC382D">Redis</span>
+      <span class="chip" style="background:#336791">PostgreSQL</span>
+    </div>
+  </div>
+
+  <!-- Guardrails -->
+  <div class="guardrails">
+    <div class="guardrails-label"><i class="ti ti-shield"></i>guardrails (cross-cutting)</div>
+    <div class="five-col">
+      <div class="card" style="background:#F1EFE8;border-color:#5F5E5A;padding:7px 9px"><div style="font-size:11px;font-weight:600;color:#444441">Prompt validation</div><div style="font-size:10px;color:#5F5E5A;margin-top:2px">Schema · length</div></div>
+      <div class="card" style="background:#F1EFE8;border-color:#5F5E5A;padding:7px 9px"><div style="font-size:11px;font-weight:600;color:#444441">Module checks</div><div style="font-size:10px;color:#5F5E5A;margin-top:2px">Middleware</div></div>
+      <div class="card" style="background:#F1EFE8;border-color:#5F5E5A;padding:7px 9px"><div style="font-size:11px;font-weight:600;color:#444441">Safety behaviors</div><div style="font-size:10px;color:#5F5E5A;margin-top:2px">Policy engine</div></div>
+      <div class="card" style="background:#F1EFE8;border-color:#5F5E5A;padding:7px 9px"><div style="font-size:11px;font-weight:600;color:#444441">Role filter</div><div style="font-size:10px;color:#5F5E5A;margin-top:2px">RBAC · OAuth2</div></div>
+      <div class="card" style="background:#F1EFE8;border-color:#5F5E5A;padding:7px 9px"><div style="font-size:11px;font-weight:600;color:#444441">Context ctrl</div><div style="font-size:10px;color:#5F5E5A;margin-top:2px">Redis session</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
