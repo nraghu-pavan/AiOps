@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="920" viewBox="0 0 1000 920"
+     xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <title>Agentic Platform Architecture – Tech Stack &amp; API Flow</title>
+  <desc>Full architecture with technology stack labels on every component and REST/gRPC API flow labels on every connection arrow.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 0 — HOME / LANDING
+       x=370 y=20 w=260 h=80   center-x=500
+  ══════════════════════════════════════════════════════ -->
+  <rect x="370" y="20" width="260" height="80" rx="10"
+        fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="500" y="47" text-anchor="middle" dominant-baseline="central"
+        font-size="14" font-weight="700" fill="#3C3489">Home / Landing</text>
+  <text x="500" y="64" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#534AB7">Single entry point · all hubs &amp; command desk</text>
+  <text x="500" y="82" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#7F77DD">React · TypeScript · Next.js</text>
+
+  <!-- Arrow: Home → Command Desk  (with API Gateway label) -->
+  <line x1="500" y1="100" x2="500" y2="140"
+        stroke="#7F77DD" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="512" y="112" font-size="10" fill="#888" font-style="italic">HTTPS · API Gateway (Kong) · JWT Auth</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 1 — COMMAND DESK
+       x=100 y=140 w=800 h=100   center-x=500  bottom=240
+  ══════════════════════════════════════════════════════ -->
+  <rect x="100" y="140" width="800" height="100" rx="10"
+        fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="500" y="163" text-anchor="middle" dominant-baseline="central"
+        font-size="14" font-weight="700" fill="#3C3489">Command Desk</text>
+  <text x="500" y="181" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#534AB7">GT Assist · NL → structured actions · confidence scoring · guardrails</text>
+  <text x="500" y="198" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#534AB7">Role-aware filtering · context controls · feedback loop</text>
+  <text x="500" y="218" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#7F77DD">Python · FastAPI · LangChain · WebSocket · Redis · JWT</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       BRANCH ARROWS  Command Desk (bottom y=240) → Hubs (top y=290)
+       Hub centers: Findings=200  Incident=500  Human=800
+  ══════════════════════════════════════════════════════ -->
+  <!-- Left: → Findings (straight down x=200) -->
+  <line x1="200" y1="240" x2="200" y2="290"
+        stroke="#1D9E75" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="210" y="264" font-size="10" fill="#0F6E56" font-style="italic">POST /findings/search</text>
+
+  <!-- Center: → Incident (straight down x=500) -->
+  <line x1="500" y1="240" x2="500" y2="290"
+        stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="510" y="264" font-size="10" fill="#185FA5" font-style="italic">POST /incidents/query</text>
+
+  <!-- Right: → Human-in-Loop (straight down x=800) -->
+  <line x1="800" y1="240" x2="800" y2="290"
+        stroke="#534AB7" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="810" y="264" font-size="10" fill="#534AB7" font-style="italic">POST /validate/request</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 2a — FINDINGS HUB
+       x=60 y=290 w=280 h=300   center-x=200  bottom=590
+       Inner items: x=70 w=260
+  ══════════════════════════════════════════════════════ -->
+  <rect x="60" y="290" width="280" height="300" rx="10"
+        fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="200" y="312" text-anchor="middle" dominant-baseline="central"
+        font-size="14" font-weight="700" fill="#085041">Findings Hub</text>
+  <text x="200" y="329" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#0F6E56">AO Comms Agents Hub</text>
+  <text x="200" y="346" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#1D9E75">Python · FastAPI · Pinecone · pgvector</text>
+  <line x1="72" y1="358" x2="328" y2="358" stroke="#0F6E56" stroke-width="0.3" opacity="0.4"/>
+
+  <!-- Row 1 -->
+  <rect x="70" y="364" width="260" height="46" rx="6"
+        fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.4"/>
+  <text x="200" y="380" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#04342C">Vector database</text>
+  <text x="200" y="397" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#0F6E56">Pinecone · pgvector · FAISS</text>
+
+  <!-- Row 2 -->
+  <rect x="70" y="416" width="260" height="46" rx="6"
+        fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.4"/>
+  <text x="200" y="432" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#04342C">Fallback search</text>
+  <text x="200" y="449" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#0F6E56">Elasticsearch · BM25</text>
+
+  <!-- Row 3 -->
+  <rect x="70" y="468" width="260" height="46" rx="6"
+        fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.4"/>
+  <text x="200" y="484" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#04342C">Grouped analysis</text>
+  <text x="200" y="501" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#0F6E56">Python · Pandas · SQL</text>
+
+  <!-- Row 4 -->
+  <rect x="70" y="520" width="260" height="46" rx="6"
+        fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.4"/>
+  <text x="200" y="536" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#04342C">Due-date buckets</text>
+  <text x="200" y="553" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#0F6E56">PostgreSQL · Redis TTL</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 2b — INCIDENT HUB
+       x=360 y=290 w=280 h=300   center-x=500  bottom=590
+       Inner items: x=370 w=260
+  ══════════════════════════════════════════════════════ -->
+  <rect x="360" y="290" width="280" height="300" rx="10"
+        fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="500" y="312" text-anchor="middle" dominant-baseline="central"
+        font-size="14" font-weight="700" fill="#0C447C">Incident Hub</text>
+  <text x="500" y="329" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#185FA5">Runbook Agents Hub</text>
+  <text x="500" y="346" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#378ADD">Python · FastAPI · Kafka · Redis Streams</text>
+  <line x1="372" y1="358" x2="628" y2="358" stroke="#185FA5" stroke-width="0.3" opacity="0.4"/>
+
+  <!-- Row 1 -->
+  <rect x="370" y="364" width="260" height="46" rx="6"
+        fill="#B5D4F4" stroke="#185FA5" stroke-width="0.4"/>
+  <text x="500" y="380" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#042C53">Decision engine</text>
+  <text x="500" y="397" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#185FA5">Python · Rules Engine · scikit-learn</text>
+
+  <!-- Row 2 -->
+  <rect x="370" y="416" width="260" height="46" rx="6"
+        fill="#B5D4F4" stroke="#185FA5" stroke-width="0.4"/>
+  <text x="500" y="432" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#042C53">Self-healing guidance</text>
+  <text x="500" y="449" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#185FA5">LangChain · Claude API · RAG</text>
+
+  <!-- Row 3 -->
+  <rect x="370" y="468" width="260" height="46" rx="6"
+        fill="#B5D4F4" stroke="#185FA5" stroke-width="0.4"/>
+  <text x="500" y="484" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#042C53">Runbook recommendations</text>
+  <text x="500" y="501" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#185FA5">Vector Search · kNN · BM25</text>
+
+  <!-- Row 4 -->
+  <rect x="370" y="520" width="260" height="46" rx="6"
+        fill="#B5D4F4" stroke="#185FA5" stroke-width="0.4"/>
+  <text x="500" y="536" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#042C53">Noisy / recurring flags</text>
+  <text x="500" y="553" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#185FA5">Kafka · Redis · PagerDuty API</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 2c — HUMAN-IN-LOOP AGENTS
+       x=660 y=290 w=280 h=300   center-x=800  bottom=590
+       Inner items: x=670 w=260
+  ══════════════════════════════════════════════════════ -->
+  <rect x="660" y="290" width="280" height="300" rx="10"
+        fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="800" y="312" text-anchor="middle" dominant-baseline="central"
+        font-size="14" font-weight="700" fill="#3C3489">Human-in-Loop Agents</text>
+  <text x="800" y="329" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#534AB7">Validation workflows · audit</text>
+  <text x="800" y="346" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#7F77DD">Python · FastAPI · Markdown · Workflow Engine</text>
+  <line x1="672" y1="358" x2="928" y2="358" stroke="#534AB7" stroke-width="0.3" opacity="0.4"/>
+
+  <!-- Row 1 -->
+  <rect x="670" y="364" width="260" height="46" rx="6"
+        fill="#CECBF6" stroke="#534AB7" stroke-width="0.4"/>
+  <text x="800" y="380" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#26215C">Playbook library</text>
+  <text x="800" y="397" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#534AB7">Markdown · Git · S3 · CDN</text>
+
+  <!-- Row 2 -->
+  <rect x="670" y="416" width="260" height="46" rx="6"
+        fill="#CECBF6" stroke="#534AB7" stroke-width="0.4"/>
+  <text x="800" y="432" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#26215C">Audit trail</text>
+  <text x="800" y="449" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#534AB7">PostgreSQL · Elasticsearch</text>
+
+  <!-- Row 3 -->
+  <rect x="670" y="468" width="260" height="46" rx="6"
+        fill="#CECBF6" stroke="#534AB7" stroke-width="0.4"/>
+  <text x="800" y="484" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#26215C">Skill files</text>
+  <text x="800" y="501" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#534AB7">YAML · JSON Schema · S3</text>
+
+  <!-- Row 4 -->
+  <rect x="670" y="520" width="260" height="46" rx="6"
+        fill="#CECBF6" stroke="#534AB7" stroke-width="0.4"/>
+  <text x="800" y="536" text-anchor="middle" dominant-baseline="central"
+        font-size="12" font-weight="600" fill="#26215C">Extensible agents</text>
+  <text x="800" y="553" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#534AB7">LangChain · Tool API · Plugin SDK</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       BUS CONNECTOR: Hubs (bottom y=590) → Shared Infra
+       Taps at x=200,500,800  Bus at y=604  Infra top y=616
+  ══════════════════════════════════════════════════════ -->
+  <!-- Vertical taps from hub centers to bus -->
+  <line x1="200" y1="590" x2="200" y2="604" stroke="#888780" stroke-width="0.8"/>
+  <line x1="500" y1="590" x2="500" y2="604" stroke="#888780" stroke-width="0.8"/>
+  <line x1="800" y1="590" x2="800" y2="604" stroke="#888780" stroke-width="0.8"/>
+  <!-- Horizontal bus rail -->
+  <line x1="60"  y1="604" x2="940" y2="604" stroke="#888780" stroke-width="0.9"/>
+  <!-- Bus section label -->
+  <text x="500" y="597" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#888780" opacity="0.75">gRPC (Vector Search) · REST GET /knowledge · REST POST /completions</text>
+  <!-- Downward arrows from bus to each infra box center -->
+  <line x1="164" y1="604" x2="164" y2="616" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+  <line x1="388" y1="604" x2="388" y2="616" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+  <line x1="612" y1="604" x2="612" y2="616" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+  <line x1="836" y1="604" x2="836" y2="616" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 3 — SHARED INFRASTRUCTURE
+       4 boxes  w=208 gap=16   positions: 60,284,508,732
+       y=616  h=68  bottom=684
+       Centers: 164, 388, 612, 836
+  ══════════════════════════════════════════════════════ -->
+  <!-- Vector database -->
+  <rect x="60"  y="616" width="208" height="68" rx="8"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="164" y="634" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#444441">Vector database</text>
+  <text x="164" y="651" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#5F5E5A">Semantic search engine</text>
+  <text x="164" y="668" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#888780">Pinecone · pgvector · FAISS</text>
+
+  <!-- GT Assist -->
+  <rect x="284" y="616" width="208" height="68" rx="8"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="388" y="634" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#444441">GT Assist (AI)</text>
+  <text x="388" y="651" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#5F5E5A">NL → actions engine</text>
+  <text x="388" y="668" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#888780">Claude API · LangChain · OpenAI</text>
+
+  <!-- Knowledge base -->
+  <rect x="508" y="616" width="208" height="68" rx="8"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="612" y="634" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#444441">Knowledge base</text>
+  <text x="612" y="651" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#5F5E5A">Eng Page + Confluence</text>
+  <text x="612" y="668" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#888780">Confluence API · Elasticsearch</text>
+
+  <!-- Prior closures -->
+  <rect x="732" y="616" width="208" height="68" rx="8"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="836" y="634" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#444441">Prior closures</text>
+  <text x="836" y="651" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#5F5E5A">Reuse &amp; memory</text>
+  <text x="836" y="668" text-anchor="middle" dominant-baseline="central"
+        font-size="10" font-style="italic" fill="#888780">Redis · PostgreSQL · S3</text>
+
+  <!-- Arrow: Infra → Outputs -->
+  <line x1="500" y1="684" x2="500" y2="700"
+        stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="512" y="693" font-size="10" fill="#888" font-style="italic">JSON response artifacts</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 4 — OUTPUTS
+       4 boxes  w=208 gap=16  same x positions as infra
+       y=700  h=58  bottom=758
+       Centers: 164, 388, 612, 836
+  ══════════════════════════════════════════════════════ -->
+  <!-- Confidence scores -->
+  <rect x="60"  y="700" width="208" height="58" rx="8"
+        fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="164" y="721" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#712B13">Confidence scores</text>
+  <text x="164" y="739" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#993C1D">Ranked matches · score 0–1</text>
+
+  <!-- Suggested fixes -->
+  <rect x="284" y="700" width="208" height="58" rx="8"
+        fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="388" y="721" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#712B13">Suggested fixes</text>
+  <text x="388" y="739" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#993C1D">Draft comms · Markdown</text>
+
+  <!-- Evidence snippets -->
+  <rect x="508" y="700" width="208" height="58" rx="8"
+        fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="612" y="721" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#712B13">Evidence snippets</text>
+  <text x="612" y="739" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#993C1D">Trend summaries · JSON</text>
+
+  <!-- Recommended actions -->
+  <rect x="732" y="700" width="208" height="58" rx="8"
+        fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="836" y="721" text-anchor="middle" dominant-baseline="central"
+        font-size="13" font-weight="700" fill="#712B13">Recommended actions</text>
+  <text x="836" y="739" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#993C1D">Deep links · guardrails</text>
+
+  <!-- Arrow: Outputs → Feedback loop -->
+  <line x1="500" y1="758" x2="500" y2="774"
+        stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 5 — CONTINUOUS IMPROVEMENT LOOP
+       x=200 y=774 w=600 h=54  center-x=500  bottom=828
+  ══════════════════════════════════════════════════════ -->
+  <rect x="200" y="774" width="600" height="54" rx="10"
+        fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="500" y="795" text-anchor="middle" dominant-baseline="central"
+        font-size="14" font-weight="700" fill="#633806">Continuous improvement loop</text>
+  <text x="500" y="813" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#854F0B">Response rationale · feedback · conversational memory</text>
+
+  <!-- Feedback return arrow (dashed, right side) -->
+  <!-- From right edge of feedback box (x=800, y=801) → right rail (x=965) → up → CD right edge (x=902, y=190) -->
+  <path d="M800 801 L965 801 L965 190 L902 190"
+        fill="none" stroke="#BA7517" stroke-width="1"
+        stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <!-- "feedback" rotated label on right rail -->
+  <text x="969" y="500" text-anchor="start" dominant-baseline="central"
+        font-size="10" fill="#BA7517" opacity="0.8"
+        transform="rotate(90,969,500)">feedback</text>
+  <!-- API label on return path -->
+  <text x="969" y="650" text-anchor="start" dominant-baseline="central"
+        font-size="10" fill="#BA7517" opacity="0.6"
+        transform="rotate(90,969,650)">POST /feedback/submit</text>
+
+  <!-- ══════════════════════════════════════════════════════
+       LAYER 6 — GUARDRAILS (cross-cutting)
+       x=60 y=842 w=880 h=70  bottom=912
+       5 inner boxes  w=160 gap=10  starts x=80
+       Centers: 160, 330, 500, 670, 840
+  ══════════════════════════════════════════════════════ -->
+  <rect x="60" y="842" width="880" height="70" rx="10"
+        fill="none" stroke="#888780" stroke-width="0.5"
+        stroke-dasharray="6 4" opacity="0.55"/>
+  <text x="500" y="856" text-anchor="middle" dominant-baseline="central"
+        font-size="10" fill="#888780" opacity="0.7">guardrails (cross-cutting)</text>
+
+  <!-- Prompt validation -->
+  <rect x="80"  y="862" width="160" height="40" rx="6"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="160" y="876" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#444441">Prompt validation</text>
+  <text x="160" y="893" text-anchor="middle" dominant-baseline="central"
+        font-size="9"  font-style="italic" fill="#888780">Schema · length checks</text>
+
+  <!-- Module checks -->
+  <rect x="250" y="862" width="160" height="40" rx="6"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="330" y="876" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#444441">Module checks</text>
+  <text x="330" y="893" text-anchor="middle" dominant-baseline="central"
+        font-size="9"  font-style="italic" fill="#888780">Middleware · interceptors</text>
+
+  <!-- Safety behaviors -->
+  <rect x="420" y="862" width="160" height="40" rx="6"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="500" y="876" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#444441">Safety behaviors</text>
+  <text x="500" y="893" text-anchor="middle" dominant-baseline="central"
+        font-size="9"  font-style="italic" fill="#888780">Policy engine · Claude filters</text>
+
+  <!-- Role-aware filter -->
+  <rect x="590" y="862" width="160" height="40" rx="6"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="670" y="876" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#444441">Role-aware filter</text>
+  <text x="670" y="893" text-anchor="middle" dominant-baseline="central"
+        font-size="9"  font-style="italic" fill="#888780">RBAC · OAuth2 scopes</text>
+
+  <!-- Context controls -->
+  <rect x="760" y="862" width="160" height="40" rx="6"
+        fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="840" y="876" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#444441">Context controls</text>
+  <text x="840" y="893" text-anchor="middle" dominant-baseline="central"
+        font-size="9"  font-style="italic" fill="#888780">Redis session · token window</text>
+
+</svg>
