@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1200"
+     height="1800"
+     viewBox="0 0 1200 1800">
+
+  <foreignObject x="0" y="0" width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+      
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Arial,sans-serif;background:#f5f5f3;padding:28px;color:#1a1a1a}
+.arch{max-width:900px;margin:0 auto}
+.title{text-align:center;margin-bottom:24px}
+.title h1{font-size:20px;font-weight:600}
+.title p{font-size:12px;color:#888;margin-top:3px}
+.card{border-radius:12px;padding:14px 16px;border:0.5px solid}
+.ch{font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.cs{font-size:11px;margin-bottom:10px}
+.bdgs{display:flex;flex-wrap:wrap;gap:5px}
+.b{display:inline-flex;align-items:center;gap:4px;background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:20px;padding:3px 9px;font-size:11px;font-weight:500;color:#1a1a1a;white-space:nowrap}
+.b img{width:14px;height:14px;object-fit:contain;flex-shrink:0}
+.center{display:flex;justify-content:center;margin-bottom:5px}
+.mb5{margin-bottom:5px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:5px}
+.ar{display:flex;flex-direction:column;align-items:center;padding:2px 0}
+.al{width:1px;height:16px;background:#bbb}
+.ah{border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #bbb}
+.at{font-size:10px;color:#999;margin:2px 0;text-align:center;font-style:italic}
+.g3-ar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:3px 0}
+.bus{margin:3px 0}
+.bus-taps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.tap{width:1px;height:12px;background:#bbb;margin:0 auto}
+.bus-rail{border-top:1px solid #ccc;text-align:center;padding-top:4px;margin:0 40px;font-size:10px;color:#999;font-style:italic}
+.bus-drops{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.drop{width:1px;height:12px;background:#bbb;margin:0 auto}
+.drop-h{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #bbb;margin:0 auto}
+.feedback{border:0.5px dashed #bbb;border-radius:12px;padding:12px;text-align:center;margin-top:5px}
+.feedback-label{font-size:11px;color:#888;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:5px}
+
+      </style>
+      
+<div class="arch">
+
+  <div class="title">
+    <h1>Agentic Platform Architecture</h1>
+    <p>Tech Stack &amp; API Flow — simplified</p>
+  </div>
+
+  <!-- HOME -->
+  <div class="center">
+    <div class="card" style="background:#EEEDFE;border-color:#534AB7;text-align:center;min-width:300px">
+      <div class="ch" style="color:#3C3489;justify-content:center"><i class="ti ti-home"></i>Home / Landing</div>
+      <div class="cs" style="color:#534AB7">Single entry point · all hubs &amp; command desk</div>
+      <div class="bdgs" style="justify-content:center">
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="" onerror="this.style.display='none'" />React</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" alt="" onerror="this.style.display='none'" />Next.js</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="" onerror="this.style.display='none'" />TypeScript</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ar"><div class="al"></div><div class="at">HTTPS · API Gateway (Kong) · JWT Auth</div><div class="ah"></div></div>
+
+  <!-- COMMAND DESK -->
+  <div class="card mb5" style="background:#EEEDFE;border-color:#534AB7">
+    <div class="ch" style="color:#3C3489"><i class="ti ti-terminal-2"></i>Command Desk</div>
+    <div class="cs" style="color:#534AB7">GT Assist · NL → structured actions · confidence scoring · guardrails · role-aware filtering</div>
+    <div class="bdgs">
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" onerror="this.style.display='none'" />Python</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="" onerror="this.style.display='none'" />FastAPI</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/langchain.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />LangChain</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" onerror="this.style.display='none'" />Redis</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />Claude API</span>
+    </div>
+  </div>
+
+  <!-- BRANCH ARROWS -->
+  <div class="g3-ar">
+    <div class="ar"><div class="al"></div><div class="at" style="color:#0F6E56">POST /findings/search</div><div class="ah"></div></div>
+    <div class="ar"><div class="al"></div><div class="at" style="color:#185FA5">POST /incidents/query</div><div class="ah"></div></div>
+    <div class="ar"><div class="al"></div><div class="at" style="color:#534AB7">POST /validate/request</div><div class="ah"></div></div>
+  </div>
+
+  <!-- 3 HUBS -->
+  <div class="g3">
+    <div class="card" style="background:#E1F5EE;border-color:#0F6E56">
+      <div class="ch" style="color:#085041"><i class="ti ti-search"></i>Findings Hub</div>
+      <div class="cs" style="color:#0F6E56">Semantic search · grouped analysis · compliance</div>
+      <div class="bdgs">
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/elasticsearch/elasticsearch-original.svg" alt="" onerror="this.style.display='none'" />Elasticsearch</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" onerror="this.style.display='none'" />pgvector</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/pinecone.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />Pinecone</span>
+      </div>
+    </div>
+    <div class="card" style="background:#E6F1FB;border-color:#185FA5">
+      <div class="ch" style="color:#0C447C"><i class="ti ti-bell-ringing"></i>Incident Hub</div>
+      <div class="cs" style="color:#185FA5">Real-time monitoring · self-healing · runbooks</div>
+      <div class="bdgs">
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg" alt="" onerror="this.style.display='none'" />Kafka</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" onerror="this.style.display='none'" />Redis</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/pagerduty.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />PagerDuty</span>
+      </div>
+    </div>
+    <div class="card" style="background:#EEEDFE;border-color:#534AB7">
+      <div class="ch" style="color:#3C3489"><i class="ti ti-user-check"></i>Human-in-Loop</div>
+      <div class="cs" style="color:#534AB7">Validation workflows · playbooks · audit trail</div>
+      <div class="bdgs">
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" onerror="this.style.display='none'" />PostgreSQL</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg" alt="" onerror="this.style.display='none'" />AWS S3</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="" onerror="this.style.display='none'" />Git</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUS CONNECTOR -->
+  <div class="bus">
+    <div class="bus-taps"><div class="tap"></div><div class="tap"></div><div class="tap"></div></div>
+    <div class="bus-rail">gRPC · REST GET /knowledge · REST POST /completions</div>
+    <div class="bus-drops"><div><div class="drop"></div><div class="drop-h"></div></div><div><div class="drop"></div><div class="drop-h"></div></div><div><div class="drop"></div><div class="drop-h"></div></div></div>
+  </div>
+
+  <!-- 3 SHARED INFRA -->
+  <div class="g3">
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <div class="ch" style="color:#444441;font-size:13px"><i class="ti ti-database"></i>Vector Store</div>
+      <div class="bdgs">
+        <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/pinecone.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />Pinecone</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" onerror="this.style.display='none'" />pgvector</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="" onerror="this.style.display='none'" />Vertex AI</span>
+      </div>
+    </div>
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <div class="ch" style="color:#444441;font-size:13px"><i class="ti ti-robot"></i>AI Engine (GT Assist)</div>
+      <div class="bdgs">
+        <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />Claude API</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/langchain.svg" alt="" onerror="this.style.display='none'" style="opacity:.65" />LangChain</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="" onerror="this.style.display='none'" />GCP</span>
+      </div>
+    </div>
+    <div class="card" style="background:#F1EFE8;border-color:#5F5E5A">
+      <div class="ch" style="color:#444441;font-size:13px"><i class="ti ti-books"></i>Knowledge Base</div>
+      <div class="bdgs">
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/confluence/confluence-original.svg" alt="" onerror="this.style.display='none'" />Confluence</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/elasticsearch/elasticsearch-original.svg" alt="" onerror="this.style.display='none'" />Elastic</span>
+        <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg" alt="" onerror="this.style.display='none'" />AWS S3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div class="feedback">
+    <div class="feedback-label"><i class="ti ti-refresh"></i>Continuous improvement loop · POST /feedback/submit · ↻ returns to command desk</div>
+    <div class="bdgs" style="justify-content:center">
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" alt="" onerror="this.style.display='none'" />Redis</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" onerror="this.style.display='none'" />PostgreSQL</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="" onerror="this.style.display='none'" />GCP</span>
+      <span class="b"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original.svg" alt="" onerror="this.style.display='none'" />AWS</span>
+    </div>
+  </div>
+
+</div>
+
+    </div>
+  </foreignObject>
+
+</svg>
