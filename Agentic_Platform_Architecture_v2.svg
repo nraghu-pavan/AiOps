@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="920" viewBox="0 0 800 920"
+     xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <title>Agentic Platform Architecture v2</title>
+  <desc>Revised architecture diagram — three non-overlapping hub columns with single-column inner rows, shared infrastructure bus, outputs, and continuous improvement loop.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 0 — Home / Landing
+  ═══════════════════════════════════════════ -->
+  <g id="home-landing">
+    <rect x="300" y="20" width="200" height="54" rx="10"
+          fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="400" y="43" text-anchor="middle" dominant-baseline="central"
+          font-size="14" font-weight="700" fill="#3C3489">Home / Landing</text>
+    <text x="400" y="61" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#534AB7">Single entry point · all hubs</text>
+  </g>
+
+  <!-- Arrow: Home → Command Desk -->
+  <line x1="400" y1="74" x2="400" y2="108"
+        stroke="#7F77DD" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 1 — Command Desk
+  ═══════════════════════════════════════════ -->
+  <g id="command-desk">
+    <rect x="120" y="108" width="560" height="90" rx="10"
+          fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="400" y="130" text-anchor="middle" dominant-baseline="central"
+          font-size="14" font-weight="700" fill="#3C3489">Command Desk</text>
+    <text x="400" y="148" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#534AB7">GT Assist · NL → structured actions</text>
+    <text x="400" y="165" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#534AB7">Confidence scoring · guardrails · feedback loop</text>
+    <text x="400" y="182" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#534AB7">Role-aware filtering · context controls</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       BRANCH ARROWS: Command Desk → 3 Hubs
+       Hub centers: Findings=140, Incident=400, Human=660
+  ═══════════════════════════════════════════ -->
+  <!-- Left: → Findings Hub (x=140) -->
+  <path d="M220 198 L220 250 L140 250 L140 280"
+        fill="none" stroke="#1D9E75" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <!-- Center: → Incident Hub (x=400) -->
+  <line x1="400" y1="198" x2="400" y2="280"
+        stroke="#185FA5" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <!-- Right: → Human-in-Loop (x=660) -->
+  <path d="M580 198 L580 250 L660 250 L660 280"
+        fill="none" stroke="#534AB7" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Branch labels -->
+  <text x="162" y="257" text-anchor="middle" font-size="11" fill="#0F6E56">Findings</text>
+  <text x="418" y="244" text-anchor="start"  font-size="11" fill="#185FA5">Incidents</text>
+  <text x="626" y="257" text-anchor="middle" font-size="11" fill="#534AB7">Validation</text>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 2a — Findings Hub  (x=20, w=240)
+       Inner items: single-column rows, w=220, x=30
+  ═══════════════════════════════════════════ -->
+  <g id="findings-hub">
+    <rect x="20" y="280" width="240" height="246" rx="10"
+          fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="140" y="302" text-anchor="middle" dominant-baseline="central"
+          font-size="14" font-weight="700" fill="#085041">Findings Hub</text>
+    <text x="140" y="320" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#0F6E56">AO Comms Agents Hub</text>
+
+    <!-- Row 1: Vector database -->
+    <rect x="30" y="336" width="220" height="36" rx="6"
+          fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="140" y="354" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#04342C">Vector database</text>
+
+    <!-- Row 2: Fallback search -->
+    <rect x="30" y="380" width="220" height="36" rx="6"
+          fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="140" y="398" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#04342C">Fallback search</text>
+
+    <!-- Row 3: Grouped analysis -->
+    <rect x="30" y="424" width="220" height="36" rx="6"
+          fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="140" y="442" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#04342C">Grouped analysis</text>
+
+    <!-- Row 4: Due-date buckets -->
+    <rect x="30" y="468" width="220" height="36" rx="6"
+          fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="140" y="486" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#04342C">Due-date buckets</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 2b — Incident Hub  (x=280, w=240)
+       Inner items: single-column rows, w=220, x=290
+  ═══════════════════════════════════════════ -->
+  <g id="incident-hub">
+    <rect x="280" y="280" width="240" height="246" rx="10"
+          fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="400" y="302" text-anchor="middle" dominant-baseline="central"
+          font-size="14" font-weight="700" fill="#0C447C">Incident Hub</text>
+    <text x="400" y="320" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#185FA5">Runbook Agents Hub</text>
+
+    <!-- Row 1: Decision engine -->
+    <rect x="290" y="336" width="220" height="36" rx="6"
+          fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="400" y="354" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#042C53">Decision engine</text>
+
+    <!-- Row 2: Self-healing guidance -->
+    <rect x="290" y="380" width="220" height="36" rx="6"
+          fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="400" y="398" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#042C53">Self-healing guidance</text>
+
+    <!-- Row 3: Runbook recommendations -->
+    <rect x="290" y="424" width="220" height="36" rx="6"
+          fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="400" y="442" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#042C53">Runbook recommendations</text>
+
+    <!-- Row 4: Noisy / recurring flags -->
+    <rect x="290" y="468" width="220" height="36" rx="6"
+          fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="400" y="486" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#042C53">Noisy / recurring flags</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 2c — Human-in-Loop Agents  (x=540, w=240)
+       Inner items: single-column rows, w=220, x=550
+  ═══════════════════════════════════════════ -->
+  <g id="human-in-loop">
+    <rect x="540" y="280" width="240" height="246" rx="10"
+          fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="660" y="302" text-anchor="middle" dominant-baseline="central"
+          font-size="14" font-weight="700" fill="#3C3489">Human-in-Loop</text>
+    <text x="660" y="320" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#534AB7">Validation workflows</text>
+
+    <!-- Row 1: Playbook library -->
+    <rect x="550" y="336" width="220" height="36" rx="6"
+          fill="#CECBF6" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="660" y="354" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#26215C">Playbook library</text>
+
+    <!-- Row 2: Audit trail -->
+    <rect x="550" y="380" width="220" height="36" rx="6"
+          fill="#CECBF6" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="660" y="398" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#26215C">Audit trail</text>
+
+    <!-- Row 3: Skill files -->
+    <rect x="550" y="424" width="220" height="36" rx="6"
+          fill="#CECBF6" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="660" y="442" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#26215C">Skill files</text>
+
+    <!-- Row 4: Extensible agents -->
+    <rect x="550" y="468" width="220" height="36" rx="6"
+          fill="#CECBF6" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="660" y="486" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#26215C">Extensible agents</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       HUB → SHARED INFRA CONNECTOR BUS
+       Hubs bottom = y=526
+       Bus line at y=542
+       Infra boxes top = y=558
+  ═══════════════════════════════════════════ -->
+  <!-- 3 vertical taps from hub centers down to bus -->
+  <line x1="140" y1="526" x2="140" y2="542" stroke="#888780" stroke-width="0.8"/>
+  <line x1="400" y1="526" x2="400" y2="542" stroke="#888780" stroke-width="0.8"/>
+  <line x1="660" y1="526" x2="660" y2="542" stroke="#888780" stroke-width="0.8"/>
+  <!-- Horizontal bus spanning all hubs -->
+  <line x1="80" y1="542" x2="720" y2="542" stroke="#888780" stroke-width="0.8"/>
+  <!-- Section label just above bus -->
+  <text x="400" y="534" text-anchor="middle" dominant-baseline="central"
+        font-size="11" fill="#888780" opacity="0.7">shared infrastructure</text>
+  <!-- 4 downward arrows from bus to infra box tops -->
+  <line x1="111" y1="542" x2="111" y2="558" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+  <line x1="304" y1="542" x2="304" y2="558" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+  <line x1="497" y1="542" x2="497" y2="558" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+  <line x1="690" y1="542" x2="690" y2="558" stroke="#888780" stroke-width="0.8" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 3 — Shared Infrastructure
+       4 boxes: w=181, gap=12  →  20,213,406,599
+       y=558, h=54, bottom=612
+  ═══════════════════════════════════════════ -->
+  <g id="shared-infrastructure">
+    <!-- Vector database (center x=111) -->
+    <rect x="20" y="558" width="181" height="54" rx="8"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="111" y="578" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#444441">Vector database</text>
+    <text x="111" y="596" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#5F5E5A">Semantic search engine</text>
+
+    <!-- GT Assist (center x=304) -->
+    <rect x="213" y="558" width="181" height="54" rx="8"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="304" y="578" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#444441">GT Assist (AI)</text>
+    <text x="304" y="596" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#5F5E5A">NL → actions engine</text>
+
+    <!-- Knowledge base (center x=497) -->
+    <rect x="406" y="558" width="181" height="54" rx="8"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="497" y="578" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#444441">Knowledge base</text>
+    <text x="497" y="596" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#5F5E5A">Eng Page + Confluence</text>
+
+    <!-- Prior closures (center x=690) -->
+    <rect x="599" y="558" width="181" height="54" rx="8"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="690" y="578" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#444441">Prior closures</text>
+    <text x="690" y="596" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#5F5E5A">Reuse &amp; memory</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       ARROW: Infra → Outputs
+  ═══════════════════════════════════════════ -->
+  <line x1="400" y1="612" x2="400" y2="642"
+        stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="412" y="628" text-anchor="start" dominant-baseline="central"
+        font-size="11" fill="#888780" opacity="0.7">explainable outputs</text>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 4 — Outputs
+       4 boxes: w=181, same x positions as infra
+       y=642, h=54, bottom=696
+  ═══════════════════════════════════════════ -->
+  <g id="outputs">
+    <!-- Confidence scores (center x=111) -->
+    <rect x="20" y="642" width="181" height="54" rx="8"
+          fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+    <text x="111" y="662" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#712B13">Confidence scores</text>
+    <text x="111" y="680" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#993C1D">Ranked matches</text>
+
+    <!-- Suggested fixes (center x=304) -->
+    <rect x="213" y="642" width="181" height="54" rx="8"
+          fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+    <text x="304" y="662" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#712B13">Suggested fixes</text>
+    <text x="304" y="680" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#993C1D">Draft communications</text>
+
+    <!-- Evidence snippets (center x=497) -->
+    <rect x="406" y="642" width="181" height="54" rx="8"
+          fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+    <text x="497" y="662" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#712B13">Evidence snippets</text>
+    <text x="497" y="680" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#993C1D">Trend summaries</text>
+
+    <!-- Recommended actions (center x=690) -->
+    <rect x="599" y="642" width="181" height="54" rx="8"
+          fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+    <text x="690" y="662" text-anchor="middle" dominant-baseline="central"
+          font-size="13" font-weight="700" fill="#712B13">Recommended actions</text>
+    <text x="690" y="680" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#993C1D">Deep links · guardrails</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       ARROW: Outputs → Feedback loop
+  ═══════════════════════════════════════════ -->
+  <line x1="400" y1="696" x2="400" y2="726"
+        stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 5 — Continuous Improvement Loop
+       x=200, w=400, y=726, h=54, bottom=780
+  ═══════════════════════════════════════════ -->
+  <g id="feedback-loop">
+    <rect x="200" y="726" width="400" height="54" rx="10"
+          fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+    <text x="400" y="748" text-anchor="middle" dominant-baseline="central"
+          font-size="14" font-weight="700" fill="#633806">Continuous improvement loop</text>
+    <text x="400" y="766" text-anchor="middle" dominant-baseline="central"
+          font-size="12" fill="#854F0B">Response rationale · feedback · conversational memory</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       FEEDBACK RETURN ARROW (right side, dashed)
+       From right edge of feedback box → up → left to command desk right edge
+       Feedback box right edge: x=600, center y=753
+       Command desk right edge: x=680, center y=153
+  ═══════════════════════════════════════════ -->
+  <path d="M600 753 L762 753 L762 153 L682 153"
+        fill="none" stroke="#BA7517" stroke-width="1"
+        stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <text x="766" y="453" text-anchor="start" dominant-baseline="central"
+        font-size="11" fill="#BA7517" opacity="0.75"
+        transform="rotate(90 766 453)">feedback</text>
+
+  <!-- ═══════════════════════════════════════════
+       LAYER 6 — Guardrails (cross-cutting)
+       x=20, w=760, y=798, h=88, bottom=886
+       5 inner boxes: w=144, gap=10  →  20,174,328,482,636
+  ═══════════════════════════════════════════ -->
+  <g id="guardrails">
+    <rect x="20" y="798" width="760" height="88" rx="10"
+          fill="none" stroke="#888780" stroke-width="0.5"
+          stroke-dasharray="6 4" opacity="0.55"/>
+    <text x="400" y="816" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#888780" opacity="0.7">guardrails (cross-cutting)</text>
+
+    <!-- Empty-prompt validation -->
+    <rect x="20" y="826" width="144" height="38" rx="6"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="92" y="845" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#444441">Prompt validation</text>
+
+    <!-- Module checks -->
+    <rect x="174" y="826" width="144" height="38" rx="6"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="246" y="845" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#444441">Module checks</text>
+
+    <!-- Safety behaviors -->
+    <rect x="328" y="826" width="144" height="38" rx="6"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="400" y="845" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#444441">Safety behaviors</text>
+
+    <!-- Role-aware filter -->
+    <rect x="482" y="826" width="144" height="38" rx="6"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="554" y="845" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#444441">Role-aware filter</text>
+
+    <!-- Context controls -->
+    <rect x="636" y="826" width="144" height="38" rx="6"
+          fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="708" y="845" text-anchor="middle" dominant-baseline="central"
+          font-size="11" fill="#444441">Context controls</text>
+  </g>
+
+</svg>
